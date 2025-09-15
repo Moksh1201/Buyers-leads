@@ -23,11 +23,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header style={{ padding: 12, borderBottom: "1px solid #eee", display: "flex", gap: 12 }}>
+          <a href="/">Home</a>
+          <a href="/buyers">Buyers</a>
+          <a href="/buyers/new">New</a>
+          <span style={{ marginLeft: "auto" }} />
+          <form action="/api/auth/signout" method="post">
+            <button type="submit" style={{ border: "1px solid #ddd", padding: 6 }}>Logout</button>
+          </form>
+        </header>
+        <main style={{ padding: 16 }}>{children}</main>
       </body>
     </html>
   );
